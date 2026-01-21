@@ -37,7 +37,15 @@ jobs:
     - name: Build
       run: dotnet build --no-restore -p:Version=${{ steps.get_version.outputs.VERSION }}
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test --no-build --verbosity normal --logger "trx;LogFileName=test-results.trx"
+    
+    - name: Test Report
+      uses: dorny/test-reporter@v1
+      if: always()
+      with:
+        name: Test Results (${{ matrix.os }})
+        path: "**/test-results.trx"
+        reporter: dotnet-trx
 
   publish:
     needs: test
