@@ -1,7 +1,7 @@
 # OsqpNet
 
 ![.NET](https://github.com/sfiruch/osqp-net/actions/workflows/dotnet.yml/badge.svg)
-[![NuGet](https://img.shields.io/nuget/v/OsqpNet.svg)](https://www.nuget.org/packages/osqp-net/)
+[![NuGet](https://img.shields.io/nuget/v/osqp-net.svg)](https://www.nuget.org/packages/osqp-net/)
 
 A modern .NET interface for the [OSQP (Operator Splitting Quadratic Program)](https://osqp.org/) solver. This library provides both a high-level modelling API and a low-level native wrapper using source-generated PInvoke.
 
