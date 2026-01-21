@@ -1,6 +1,21 @@
 # OsqpNet
 
-A modern .NET 10 interface for the [OSQP (Operator Splitting Quadratic Program)](https://osqp.org/) solver. This library provides both a high-level modelling API and a low-level native wrapper using source-generated PInvoke.
+![.NET](https://github.com/sfiruch/osqp-net/actions/workflows/dotnet.yml/badge.svg)
+[![NuGet](https://img.shields.io/nuget/v/OsqpNet.svg)](https://www.nuget.org/packages/osqp-net/)
+
+A modern .NET interface for the [OSQP (Operator Splitting Quadratic Program)](https://osqp.org/) solver. This library provides both a high-level modelling API and a low-level native wrapper using source-generated PInvoke.
+
+## Installation
+
+Install the package via NuGet:
+
+```bash
+dotnet add package osqp-net
+```
+
+The package includes native binaries for:
+- **Windows** (x64)
+- **Linux** (x64)
 
 ## Features
 
@@ -10,10 +25,6 @@ A modern .NET 10 interface for the [OSQP (Operator Splitting Quadratic Program)]
 - **High-level Wrapper**: Clean, disposable `OsqpSolver` and `CscMatrix` classes.
 - **Native Performance**: Uses .NET 10 `LibraryImport` for efficient C API calls.
 - **Type Safety**: Strongly typed enums and structs reflecting the OSQP C API.
-
-## Installation
-
-Ensure `libosqp.dll` is available in your output directory (automatically handled if you include the library project).
 
 ## Quick Start (Modelling API)
 

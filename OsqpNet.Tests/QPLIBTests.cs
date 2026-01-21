@@ -18,8 +18,20 @@ public class QPLibTests
     [DynamicData(nameof(EnumerateQPLibFiles), DynamicDataSourceType.Method)]
     public unsafe void Instance(string filename)
     {
-        using var env = new GRBEnv();
-        using var m = new GRBModel(env, Path.Combine(BaseDir, filename + ".lp"));
+        GRBEnv env;
+        try
+        {
+            env = new GRBEnv();
+        }
+        catch (Exception ex)
+        {
+            Assert.Inconclusive("Gurobi not found, skipping QPLIB test: " + ex.Message);
+            return;
+        }
+
+        using (env)
+        using (var m = new GRBModel(env, Path.Combine(BaseDir, filename + ".lp")))
+        {
 
         var model = new Model();
         model.Settings.EpsAbs = 0.05;
@@ -92,4 +104,5 @@ public class QPLibTests
             //        Assert.AreEqual(kvp.Value, result.Solution[vars[m.GetVarByName(kvp.Key)]], 0.2);
         }
     }
+}
 }

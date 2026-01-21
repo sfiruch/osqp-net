@@ -7,9 +7,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OsqpNet.Tests", "OsqpNet.Tests\OsqpNet.Tests.csproj", "{B82AFEAE-BA6C-47F8-988D-105CCA572E36}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9B5D6ABD-B63C-4FC2-99DC-192120E33662}"
-	ProjectSection(SolutionItems) = preProject
-		README.md = README.md
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,5 +45,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {031BCABF-E014-4CC7-A051-2F4D140DFCEE}
 	EndGlobalSection
 EndGlobal

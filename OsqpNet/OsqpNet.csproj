@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
@@ -6,9 +6,19 @@
     <Nullable>enable</Nullable>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <PackageId>osqp-net</PackageId>
+    <Authors>Simon Felix</Authors>
+		<DebugType>embedded</DebugType>
+		<IncludeSource>true</IncludeSource>
+    <Description>A .NET interface for the OSQP solver.</Description>
+    <RepositoryUrl>https://github.com/sfiruch/osqp-net</RepositoryUrl>
+    <PackageTags>optimization solver osqp quadratic-programming</PackageTags>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+		<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="..\LICENSE.txt" Pack="true" PackagePath="\" />
     <InternalsVisibleTo Include="OsqpNet.Tests" />
   </ItemGroup>
 
@@ -19,7 +29,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="libosqp.dll" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\README.md" Link="README.md" />
+    <None Include="libosqp.dll" Pack="true" PackagePath="runtimes/win-x64/native" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="libosqp.so" Pack="true" PackagePath="runtimes/linux-x64/native" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
 </Project>
