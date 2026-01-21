@@ -13,12 +13,10 @@
     <Description>A .NET interface for the OSQP solver.</Description>
     <RepositoryUrl>https://github.com/sfiruch/osqp-net</RepositoryUrl>
     <PackageTags>optimization solver osqp quadratic-programming</PackageTags>
-    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 		<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\LICENSE.txt" Pack="true" PackagePath="\" />
     <InternalsVisibleTo Include="OsqpNet.Tests" />
   </ItemGroup>
 
@@ -26,6 +24,10 @@
     <Compile Remove="OsqpNet.Tests\**" />
     <EmbeddedResource Remove="OsqpNet.Tests\**" />
     <None Remove="OsqpNet.Tests\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\LICENSE.txt" Link="LICENSE.txt" />
   </ItemGroup>
 
   <ItemGroup>
