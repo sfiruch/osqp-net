@@ -67,7 +67,13 @@ jobs:
       run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
       shell: bash
 
+    - name: NuGet login (OIDC → temp API key)
+      uses: NuGet/login@v1
+      id: login
+      with:
+        user: deiruch
+    
     - name: Pack
       run: dotnet pack OsqpNet/OsqpNet.csproj -c Release -o out -p:Version=${{ steps.get_version.outputs.VERSION }}
     - name: Push to NuGet
-      run: dotnet nuget push out/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
+      run: dotnet nuget push out/*.nupkg --api-key ${{steps.login.outputs.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json
