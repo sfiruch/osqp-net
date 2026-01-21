@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="OsqpNet.Tests" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="OsqpNet.Tests\**" />
+    <EmbeddedResource Remove="OsqpNet.Tests\**" />
+    <None Remove="OsqpNet.Tests\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="libosqp.dll" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+</Project>
