@@ -156,6 +156,9 @@ public sealed class LinExpr
     /// <summary>Multiplies a variable by an expression to create a quadratic expression.</summary>
     public static QuadExpr operator *(Variable v, LinExpr e) => e * v;
 
+    /// <summary>Implicitly converts a variable expression to a linear expression.</summary>
+    public static implicit operator LinExpr(Variable v) => new LinExpr(v);
+
     /// <summary>Implicitly converts a linear expression to a quadratic expression.</summary>
     public static implicit operator QuadExpr(LinExpr l)
     {

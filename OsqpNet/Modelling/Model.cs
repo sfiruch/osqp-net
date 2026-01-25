@@ -11,6 +11,11 @@ namespace OsqpNet.Modelling;
 /// </summary>
 public sealed class Model : IDisposable
 {
+    /// <summary>
+    /// Infinity value
+    /// </summary>
+    public const double OSQP_INFTY = 1e30;
+
     private readonly List<Variable> _variables = new();
     private readonly List<Constraint> _constraints = new();
     private QuadExpr _objective = new();
@@ -37,25 +42,21 @@ public sealed class Model : IDisposable
     }
 
     /// <summary>
-    /// Adds a new variable to the model.
-    /// </summary>
-    public Variable AddVariable()
-    {
-        var v = new Variable() { Index = _variables.Count };
-        _variables.Add(v);
-        return v;
-    }
-
-    /// <summary>
-    /// Adds a new variable to the model with lower and upper bounds.
+    /// Adds a new variable to the model with optional lower and upper bounds.
     /// </summary>
     /// <param name="lb">Lower bound.</param>
     /// <param name="ub">Upper bound.</param>
-    public Variable AddVariable(double lb, double ub)
+    public Variable AddVariable(double lb = -OSQP_INFTY, double ub = OSQP_INFTY)
     {
-        var v = AddVariable();
-        AddConstraint(v >= lb);
-        AddConstraint(v <= ub);
+        var v = new Variable() { Index = _variables.Count };
+        _variables.Add(v);
+
+        if (lb < -OSQP_INFTY) lb = -OSQP_INFTY;
+        if (ub > OSQP_INFTY) ub = OSQP_INFTY;
+
+        if (lb != -OSQP_INFTY || ub != OSQP_INFTY)
+            AddConstraint(new Constraint(v, lb, ub));
+
         return v;
     }
 
@@ -94,8 +95,8 @@ public sealed class Model : IDisposable
 
             double val = kv.Value;
             if (i == j) val *= 2.0;
-            
-pData.Add((i, j, val));
+
+            pData.Add((i, j, val));
         }
         var pCsc = BuildCsc(n, n, pData);
 
